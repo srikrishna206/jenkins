@@ -1,37 +1,23 @@
 pipeline {
-    agent any  // Runs on any available agent/node
+    agent any
 
     stages {
-        stage('Clone') {
+        stage('Checkout') {
             steps {
-                git branch: 'main',
-                echo 'Cloning from Git...'
-                git url: 'https://github.com/srikrishna206/jenkins.git'
+                git url: 'https://github.com/srikrishna206/jenkins.git', branch: 'main'
             }
         }
 
         stage('Build') {
             steps {
-                echo 'Building the project...'
-                sh 'echo "Simulating build..."'
+                echo 'Building...'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying the project...'
-                sh 'echo "Simulating deploy..."'
+                echo 'Deploying...'
             }
         }
     }
-
-    post {
-        success {
-            echo 'Pipeline completed successfully!'
-        }
-        failure {
-            echo 'Pipeline failed.'
-        }
-    }
 }
-
